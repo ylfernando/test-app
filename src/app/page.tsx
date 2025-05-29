@@ -4,12 +4,11 @@ import { peopleList } from "@/data/peopleList";
 export const app = () => {
   return (
     <>
-      <Header writing="A vida é bela!">
-        <h1>teste</h1>
-      </Header>
       <ul>
-        {peopleList.map((Person) => (
-          <li>{Person.nome}</li>
+        {peopleList.map((person) => (
+          <li key={person.id}>
+            {person.nome} - {person.profissao}
+          </li>
         ))}
       </ul>
     </>
