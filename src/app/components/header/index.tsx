@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
 
 type Props = {
-  author?: string;
-  writing: string;
-  children: ReactNode;
+  author: string;
+  writing?: string;
+  children?: ReactNode;
 };
 
 export const Header = ({ author, writing, children }: Props) => {
