@@ -1,12 +1,9 @@
-import { Header } from "@/app/components/header";
-import { peopleList } from "@/data/peopleList";
-
+import { EmojiRating } from "@/app/components/emojiRating";
 export const app = () => {
   return (
-    <>
-      <Header writing="blablalbalbalbalalalalal"></Header>
-    </>
+    <div className="w-screen h-screen flex justify-center items-center">
+      <EmojiRating rating={4} />
+    </div>
   );
 };
-
 export default app;
