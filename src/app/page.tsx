@@ -2,36 +2,45 @@
 
 import { useState } from "react";
 import { Person } from "@/types/person";
+import { List } from "@/types/list";
 
 export const Page = () => {
-  const [fullName, setFullName] = useState<Person>({
-    name: "Fernando",
-    lastName: "Freitas",
-  });
+  const [itemInput, setItemInput] = useState("");
+  const [textList, setTextList] = useState<List[]>([
+    {
+      label: "Comer",
+      checked: false,
+    },
+    {
+      label: "Dormir",
+      checked: false,
+    },
+  ]);
+  const handleAdd = () => {
+    setTextList([...textList, { label: itemInput, checked: false }]);
+  };
+
   return (
-    <div className="w-screen h-screen flex flex-col items-center justify-center">
+    <div className=" bg-white text-black w-screen h-screen flex flex-col items-center justify-center">
+      <h1 className="h1 antialiased text-lg">Lista de tarefas:</h1>
       <input
         type="text"
-        className="bg-blue-600 text-white p-4 rounded-md"
-        placeholder="Nome"
-        value={fullName.name}
-        onChange={(n) =>
-          setFullName({ name: n.target.value, lastName: fullName.lastName })
-        }
+        className="bg-red-400 m-4 p-4 text-white rounded-md antialiased text-x1"
+        placeholder="Tarefa"
+        value={itemInput}
+        onChange={(e) => setItemInput(e.target.value)}
       ></input>
-      <input
-        type="text"
-        className=" border-white bg-blue-600 text-white p-4 rounded-md"
-        placeholder="Sobrenome"
-        value={fullName.lastName}
-        onChange={(n) =>
-          setFullName({ name: fullName.name, lastName: n.target.value })
-        }
-      ></input>
-      <p className="p">Seu nome completo é :</p>
-      <p className="p">
-        {fullName.name} {fullName.lastName}
-      </p>
+      <button
+        onClick={handleAdd}
+        className=" p-5 m-5 button bg-blue-600 text-white text-2x1"
+      >
+        Enviar tarefas
+      </button>
+      <ul className="">
+        {textList.map((item) => (
+          <li className="li text-lg">{item.label}</li>
+        ))}
+      </ul>
     </div>
   );
 };
