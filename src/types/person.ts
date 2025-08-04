@@ -1,5 +1,4 @@
 export type Person = {
-    id:number,
-    nome:string,
-    profissao:string
+    name: string,
+    lastName: string
 }
