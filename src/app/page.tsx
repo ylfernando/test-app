@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { photoList } from "@/data/photoList";
 import { PhotoItem } from "./components/PhotoItem";
+import { Modal } from "./components/Modal";
 
 export const Page = () => {
   const [showModal, setShowModal] = useState(false);
@@ -14,6 +15,9 @@ export const Page = () => {
       setImageModal(photo.url);
       setShowModal(true);
     }
+  };
+  const closeModal = () => {
+    setShowModal(false);
   };
 
   return (
@@ -30,6 +34,7 @@ export const Page = () => {
           />
         ))}
       </section>
+      {showModal && <Modal image={imageModal} closeModal={closeModal} />}
     </div>
   );
 };
