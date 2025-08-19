@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Person } from "@/types/person";
-import { List } from "@/types/list";
+import { List } from "@/types/List";
 
 export const Page = () => {
   const [itemInput, setItemInput] = useState("");
@@ -17,7 +17,13 @@ export const Page = () => {
     },
   ]);
   const handleAdd = () => {
+    if (itemInput.trim() === "") return;
     setTextList([...textList, { label: itemInput, checked: false }]);
+    setItemInput("");
+  };
+
+  const deleteItem = (index: number) => {
+    setTextList(textList.filter((item, key) => key !== index));
   };
 
   return (
@@ -37,8 +43,16 @@ export const Page = () => {
         Enviar tarefas
       </button>
       <ul className="">
-        {textList.map((item) => (
-          <li className="li text-lg">{item.label}</li>
+        {textList.map((item, index) => (
+          <li key={index} className="li text-lg">
+            {item.label}
+            <button
+              onClick={() => deleteItem(index)}
+              className="hover:underline"
+            >
+              [DELETAR]
+            </button>
+          </li>
         ))}
       </ul>
     </div>
