@@ -1,40 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import { photoList } from "@/data/photoList";
-import { PhotoItem } from "./components/PhotoItem";
-import { Modal } from "./components/Modal";
+import { questions } from "@/data/questions";
 
 export const Page = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [imageModal, setImageModal] = useState("");
-
-  const openModal = (id: number) => {
-    const photo = photoList.find((item) => item.id === id);
-    if (photo) {
-      setImageModal(photo.url);
-      setShowModal(true);
-    }
-  };
-  const closeModal = () => {
-    setShowModal(false);
-  };
-
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const title = "Quiz App";
   return (
-    <div className="mx-2">
-      <h1 className="text-center font-bold text-3xl my-10">
-        Fotos intergaláticas
-      </h1>
-      <section className=" text-2xl container max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {photoList.map((item) => (
-          <PhotoItem
-            key={item.id}
-            photo={item}
-            onClick={() => openModal(item.id)}
-          />
-        ))}
-      </section>
-      {showModal && <Modal image={imageModal} closeModal={closeModal} />}
+    <div className="w-full h-screen h-full flex justify-center items-center bg-purple-800">
+      <div className="w-full max-w-xl rounded-md bg-white text-black shadow shadow-black">
+        <div className="p-5">
+          <h1 className="text-2xl font-bold">{title}</h1>
+        </div>
+        <div className="p-5 text-center border-t border-gray-400">
+          {currentQuestion + 1} de {questions.length} pergunta{" "}
+          {questions.length > 1 ? "s" : ""}
+        </div>
+      </div>
     </div>
   );
 };
